@@ -21,7 +21,6 @@ namespace DoorStepDelivery.Pages
             _webDriver.WaitUntilElementDisplayState(By.Id(_cookiePolicyId), true);
             CookiesAcceptButton.Click();
             _webDriver.WaitUntilElementDisplayState(By.Id(_cookiePolicyId), false);
-
         }
 
         public void GoTo() => _webDriver.Navigate().GoToUrl(_loginPageUrl);
