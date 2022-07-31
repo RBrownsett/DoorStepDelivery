@@ -18,19 +18,19 @@ namespace DoorStepDelivery.StepDefinitions
         public void GivenIAmOnTheLoginPage()
         {
             _loginPage.GoTo();
-            _loginPage.AcceptCookiePolicy();
+            _loginPage.AcceptCookies();
         }
 
         [When(@"I enter invalid details and try to login")]
         public void WhenIEnterInvalidDetailsAndTryToLogin()
         {
-            throw new PendingStepException();
+            _loginPage.Login("1234", "ABCDEFG");
         }
 
         [Then(@"I am not logged in")]
         public void ThenIAmNotLoggedIn()
         {
-            throw new PendingStepException();
+            _loginPage.IsPageLoaded().Should().BeTrue();
         }
     }
 }

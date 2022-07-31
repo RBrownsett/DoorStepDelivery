@@ -3,26 +3,38 @@ using OpenQA.Selenium;
 
 namespace DoorStepDelivery.Pages
 {
-    public class LoginPage
+    public class LoginPage : BasePage
     {
         private readonly IWebDriver _webDriver;
 
-        private const string _cookiePolicyId = "cookiescript_injected";
-        private const string _loginPageUrl = "https://themodernmilkman.co.uk/";
+        private const string _loginPageUrl = "https://themodernmilkman.co.uk/Users/login";
+        private const string _phoneNumberInputField = "phoneNo";
+        private const string _passwordIinputField = "password";
+        public const string _loginButtonId = "checkLogin";
 
-        private IWebElement CookiesAcceptButton => _webDriver.FindElement(By.Id("cookiescript_accept"));
-        public LoginPage(Driver driver)
+
+        private IWebElement LoginButton => _webDriver.FindElement(By.Id(_loginButtonId));
+        internal IWebElement PhoneNumberInputField => _webDriver.FindElement(By.Id(_phoneNumberInputField));
+        internal IWebElement PasswordInputField => _webDriver.FindElement(By.Id(_passwordIinputField));
+       
+        public LoginPage(Driver driver) : base(driver)
         {
             _webDriver = driver.WebDriver;
         }
 
-        public void AcceptCookiePolicy()
-        {
-            _webDriver.WaitUntilElementDisplayState(By.Id(_cookiePolicyId), true);
-            CookiesAcceptButton.Click();
-            _webDriver.WaitUntilElementDisplayState(By.Id(_cookiePolicyId), false);
-        }
-
         public void GoTo() => _webDriver.Navigate().GoToUrl(_loginPageUrl);
+
+        public void Login(string mobileNumber, string password)
+        {
+            PhoneNumberInputField.SendKeys(mobileNumber);
+            PasswordInputField.SendKeys(password);
+            LoginButton.Click();
+        }
+        public bool IsPageLoaded(int maxPageLoadTimeSeconds = 20)
+        {
+            var isPhoneNumberElementPresent = _webDriver.IsElementPresent(By.Id(_phoneNumberInputField), true, maxPageLoadTimeSeconds);
+            var isUrlCorrect = _webDriver.Url.Equals(_loginPageUrl);
+            return isUrlCorrect && isPhoneNumberElementPresent;
+        }
     }
 }
