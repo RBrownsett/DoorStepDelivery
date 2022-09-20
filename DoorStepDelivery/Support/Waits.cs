@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace DoorStepDelivery.Support
 {
@@ -57,6 +58,11 @@ namespace DoorStepDelivery.Support
                     throw;
                 }
             });
+        }
+
+        public static void WaitUntilElementInvisible(this IWebDriver webDriver, By by, int timeoutInMs = 10000, double pollingInterval = 0.5)
+        {
+            webDriver.Wait(timeoutInMs, pollingInterval).Until(ExpectedConditions.InvisibilityOfElementLocated(by));
         }
 
 
