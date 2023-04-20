@@ -1,4 +1,5 @@
 using DoorStepDelivery.Pages;
+using DoorStepDelivery.Support;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,10 +9,12 @@ namespace DoorStepDelivery.StepDefinitions
     public class ForgotPasswordStepDefinitions
     {
         private readonly LoginPage _loginPage;
+        private readonly ForgotPasswordPage _forgotPasswordPage;
 
-        public ForgotPasswordStepDefinitions(LoginPage loginPage)
+        public ForgotPasswordStepDefinitions(Driver driver)
         {
-            _loginPage = loginPage;
+            _loginPage = new LoginPage(driver.Current);
+            _forgotPasswordPage = new ForgotPasswordPage(driver.Current);
         }
 
         [When(@"I request the forgot password feature")]
@@ -23,7 +26,7 @@ namespace DoorStepDelivery.StepDefinitions
         [Then(@"I can view the forgot password page")]
         public void ThenICanViewTheForgotPasswordPage()
         {
-            throw new PendingStepException();
+            _forgotPasswordPage.IsPageLoaded().Should().BeTrue();
         }
     }
 }

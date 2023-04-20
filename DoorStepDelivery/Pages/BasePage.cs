@@ -11,9 +11,9 @@ namespace DoorStepDelivery.Pages
 
         private IWebElement CookiesAcceptButton => _webDriver.FindElement(By.Id("cookiescript_accept"));
 
-        public BasePage(Driver driver)
+        public BasePage(IWebDriver driver)
         {
-            _webDriver = driver.WebDriver;
+            _webDriver = driver;
         }
 
         public void AcceptCookies()

@@ -13,9 +13,9 @@ namespace DoorStepDelivery.Pages
         private readonly IWebDriver _webDriver;
 
         private By _invalidLoginTextElement = By.Id("swal2-content");
-        public Modals(Driver driver) : base(driver)
+        public Modals(IWebDriver driver) : base(driver)
         {
-            _webDriver = driver.WebDriver;
+            _webDriver = driver;
         }
 
         private string GetInvalidLoginText()

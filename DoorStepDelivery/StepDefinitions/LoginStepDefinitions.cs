@@ -1,4 +1,5 @@
 using DoorStepDelivery.Pages;
+using DoorStepDelivery.Support;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,9 +10,9 @@ namespace DoorStepDelivery.StepDefinitions
     {
         private readonly LoginPage _loginPage;
 
-        public LoginStepDefinitions(LoginPage loginPage)
+        public LoginStepDefinitions(Driver driver)
         {
-            _loginPage = loginPage;
+            _loginPage = new LoginPage(driver.Current);
         }
 
         [Given(@"I am on the login page")]
@@ -32,5 +33,12 @@ namespace DoorStepDelivery.StepDefinitions
         {
             _loginPage.IsPageLoaded().Should().BeTrue();
         }
+
+        [Then(@"the page title is displayed")]
+        public void ThenThePageTitleIsDisplayed()
+        {
+            _loginPage.GetPageTitle().Should().Be("Account");
+        }
+
     }
 }

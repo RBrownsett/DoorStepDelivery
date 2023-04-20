@@ -75,11 +75,11 @@ namespace DoorStepDelivery.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I can view the forgot password page")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("forgotPassword")]
         public virtual void ICanViewTheForgotPasswordPage()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "forgotPassword"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I can view the forgot password page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
